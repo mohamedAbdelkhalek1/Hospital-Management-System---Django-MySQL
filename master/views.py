@@ -838,7 +838,7 @@ def skin_detect_view(request):
         img.save(image_path, format='PNG')
         
         # تحميل النموذج والتصنيف
-        model_path = 'E:/bulding/Django_projects/Hospital/master/ai/model.h5'
+        model_path = 'E:/bulding/Django_projects/Hospital/master/ai/skin.h5'
         model, input_layer = skin_classifier.load_trained_model(model_path)
         idx, pred = skin_classifier.classifier(image_path, model, input_layer)
         
