@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<title>About Us</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: Arial, sans-serif;
+		}
+		header {
+			background-color: #0072C6;
+			color: #fff;
+			padding: 20px;
+		}
+		h1 {
+			font-size: 36px;
+			margin: 0 0 20px;
+			text-align : center;
+		}
+		p {
+			font-size: 18px;
+			line-height: 1.5;
+			margin: 0 0 20px;
+			text-align : center;
+		}
+		.container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
+      grid-template-rows: auto;
+      grid-template-areas: "services team"
+                            "ai ai";
+      gap: 40px;
+      padding: 40px;
+  }
+		.services {
+			grid-area: services;
+		}
+		.services h2 {
+			font-size: 24px;
+			margin: 0 0 20px;
+		}
+		.services p {
+			font-size: 18px;
+			line-height: 1.5;
+			margin: 0 0 20px;
+		}
+		.departments {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+   }
+   .department {
+      flex-basis: 20%;
+      margin-bottom: 40px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      overflow: hidden;
+      transition: transform 0.3s ease-in-out;
+   }
+		.department:hover {
+			transform: translateY(-10px);
+			cursor: pointer;
+		}
+		.department img {
+			max-width: 100%;
+			height: auto;
+		}
+		.department h3 {
+			font-size: 20px;
+			margin: 20px;
+		}
+		.department p {
+			font-size: 16px;
+			line-height: 1.5;
+			margin: 20px;
+		}
+		.team {
+			grid-area: team;
+		}
+		.team h2 {
+			font-size: 24px;
+			margin: 0 0 20px;
+		}
+		.team p {
+			font-size: 18px;
+			line-height: 1.5;
+			margin: 0 0 20px;
+		}
+		.heads {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			grid-gap: 20px;
+			margin-top: 40px;
+		}
+		.head {
+			background-color: #fff;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			border-radius: 5px;
+			overflow: hidden;
+			transition: transform 0.3s ease-in-out;
+			text-align: center;
+			padding: 20px;
+		}
+		.head:hover {
+			transform: translateY(-10px);
+			cursor: pointer;
+		}
+		.head img {
+			max-width: 100%;
+			height: auto;
+		}
+		.head h3 {
+			font-size: 20px;
+			margin: 20px;
+		}
+		.head p {
+			font-size: 16px;
+			line-height: 1.5;
+			margin: 20px;
+		}
+		.ai {
+			grid-area: ai;
+			text-align: center;
+		}
+		.ai img {
+			max-width: 100%;
+			height: auto;
+			margin-top: 40px;
+		}
+    section {
+			padding: 40px;
+		}
+    .button {
+			display: inline-block;
+			padding: 10px 20px;
+			background-color: #0072C6;
+			color: #fff;
+			font-size: 18px;
+			text-decoration: none;
+			margin-right: 20px;
+			border-radius: 5px;
+			transition: background-color 0.3s ease-in-out;
+		}
+		.button:hover {
+			background-color: #005CA9;
+			cursor: pointer;
+		}
+		a {
+			color: #333;
+			text-decoration: none;
+		}
+		
+		.container1 {
+			margin: 0 auto;
+			max-width: 1200px;
+		}
+		
+		
+		nav {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 20px 0;
+		}
+		
+		
+		
+		.nav-links {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			flex: 2;
+			justify-content: flex-end;
+			list-style: none;
+		}
+		
+		.nav-links li {
+			margin: 0 10px;
+		}
+		
+		.nav-links li a {
+			font-weight: bold;
+			transition: all 0.3s ease;
+			padding: 10px;
+			border-radius: 5px;
+		}
+		
+		.nav-links li a:hover {
+			background-color: #333;
+			color: #fff;
+		}
+		
+		
+/* Footer */
+footer {
+	background-color: #333;
+	color: #fff;
+	padding: 20px 0;
+	text-align: center;
+}
+
+footer p {
+	font-size: 16px;
+	margin-bottom: 0;
+}
+
+footer a {
+	color: #fff;
+}
+	</style>
+</head>
+
+<body>
+		<nav>
+			<div class="container1">
+				<ul class="nav-links">
+					<li><a href="{% url "home" %}">الصفحة الرئيسية</a></li>
+					<li><a href="{% url "aboutus" %}">معلومات عنا</a></li>
+					<li><a href="{% url "book_appointment" %}">احجز موعدك الان</a></li>
+					<li><a href="{% url "contactus" %}">تواصل معنا</a></li>
+				</ul>
+			</div>
+		</nav>
+		<header>
+		<h1>معلومات عنا</h1>
+		<p>اعرف المزيد عن ما نقدمه من خدمات و على فريق العمل الذي يتمتع بخبرة و كفاءة عالية</p>
+	</header>
+	<div class="container">
+		<div class="services">
+			<h1>الأقسام الطبية</h1>
+			<p>تتألف المستشفى من عدة أقسام مختلفة، كل قسم يتخصص في معالجة نوع معين من الأمراض أو الإصابات. وتتنوع الأقسام في المستشفيات بين الأقسام الطبية العامة والأقسام الطبية المتخصصة، وتشمل بعض الأقسام الجراحية والطبية والنفسية وغيرها. وتعمل هذه الأقسام بجهود مشتركة لتقديم الرعاية الصحية الكاملة للمرضى، ويتم إدارة كل قسم بواسطة رئيس القسم الذي يتولى المسؤولية الكاملة عن تنظيم العمل في القسم وتوجيه الفريق الطبي والتأكد من جودة الخدمات التي يتلقاها المرضى. وفي هذه الصفحة، سنعرض لكم أربعة من أقسام المستشفى برؤسائها والذين يعملون بجهود مشتركة لتقديم أفضل الخدمات الصحية للمرضى. وسنعرض لكم تفاصيل عن كل قسم ورئيس القسم الذي يعمل فيه والخدمات التي يوفرها القسم للمرضى</p>
+			<div class="departments">
+        {% for department in departments %}
+				<div class="department">
+					<img src="{{department.head_of_department.profile_pic.url}}" alt="Department">
+					<h3>رئيس قسم {{department.name}}</h3>
+          <h3>د. {{department.head_of_department.get_name}}</h3>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+  </div>
+
+  <div class="container">
+		<div class="services">
+      <h1 >ما نقدمه من خدمات الذكاء الاصطناعى</h1>
+      <p>تستخدم التكنولوجيا والذكاء الاصطناعي في المستشفى لتحسين الخدمات الصحية المقدمة للمرضى. وتشمل هذه التقنيات استخدام الصور الطبية وتحليلها بواسطة الذكاء الاصطناعي لتشخيص الأمراض بدقة أفضل وتحديد العلاج الأمثل للمرضى. وتقدم مستشفانا خدمات الذكاء الاصطناعي المتقدمة، فنحن نوفر خدمة التعرف على الأمراض الجلدية الخبيثة من خلال الصور، وهذا يساعد الأطباء في تحديد نوع السرطان الجلدي ومدى خطورته. كما نوفر خدمة الكشف عن كسور العظام من خلال صور الأشعة، وهذا يساعد في تحديد نوع الكسر ومدى خطورته وتحديد العلاج المناسب. ويساعد استخدام الذكاء الاصطناعي في هذه الخدمات على تحسين دقة التشخيص وتقليل الخطأ الطبي، مما يعزز الرعاية الصحية المقدمة للمرضى ويساهم في تحسين نتائج العلاج. ونحن في مستشفانا نسعى دائمًا لتحسين خدماتنا الصحية باستخدام التكنولوجيا الحديثة والذكاء الاصطناعي، وذلك لتحسين رعاية المرضى وتحسين جودة الحياة
+      </p>
+      <div class="departments">
+
+				<div class="department">
+					<img src="{% static "images/part_6.jpg"%}" alt="الجلد">
+          <a href="/skin_detect" class="button"><h3>التعرف على امراض الجلد الخبيثة</h3></a>
+          <p>يستخدم الذكاء الاصطناعي لتحليل الصور الجلدية وتشخيص الأمراض بدقة عالية، مما يساعد الأطباء في تحديد نوع السرطان الجلدي ومدى خطورته</p>
+			  </div>
+
+			  <div class="department">
+				<img src="{% static "images/part_1.jpg"%}" alt="المخ">
+	  <a href="/brain_classifier" class="button"><h3>الكشف عن مرض خبيث في المخ باستخدام الذكاء الاصطناعي</h3></a>
+	  <p>يستخدم الذكاء الاصطناعي في تحليل صور الأشعة لتحديد و الكشف عنمرض خبيث في المخ باستخدام الذكاء الاصطناعي</p>
+		  </div>
+
+				<div class="department">
+					<img src="{% static "images/part_9.jpg"%}" alt="العظام">
+          <a href="/bones_classifier" class="button"><h3>التعرف و الكشف عن كسور العظام </h3></a>
+          <p>يمكن استخدام الذكاء الاصطناعي في تحليل صور الأشعة لتحديد و الكشف عن كسور العظام من خلال صور الأشعة</p>
+				</div>
+
+			</div>
+
+		</div>
+  </div>
+
+  <footer>
+    <div class="container1">
+        <p>About Healthcare Hospital</p>
+    </div>
+</footer>
+
+</body>
+</html>

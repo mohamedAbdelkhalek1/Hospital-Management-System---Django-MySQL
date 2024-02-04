@@ -1,0 +1,40 @@
+{% extends 'ai_classifier/ai_base.html' %}
+{% load static %}
+{% block ai %}
+
+<div class="container">
+  <h1>اختبار امراض الجلد الخبيثة باستخدام الذكاء الاصطناعي</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="image">رفع الصورة:</label>
+    <input type="file" name="image" id="image" accept="image/*" required>
+    <button type="submit">تصنيف</button>
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% endif %}
+  </form>
+  {% if res %}
+    <div class="result">
+      <h2>نتيجة التصنيف :</h2>
+      <p>المرض المتوقع : {{ res.result }}</p>
+    </div>
+    <div class="image-container">
+      <h2>الصورة المرفوعة:</h2>
+      <img src="data:image/jpeg;base64,{{ res.image }}" alt="الصورة المرفوعة">
+    </div>
+  {% endif %}
+</div>
+<script>
+  const imageInput = document.querySelector('#image');
+  const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+
+  imageInput.addEventListener('change', () => {
+    const file = imageInput.files[0];
+    if (!allowedExtensions.exec(file.name)) {
+      alert('يرجى تحميل ملف صورة (JPG، JPEG، أو PNG).');
+      imageInput.value = '';
+      return false;
+    }
+  });
+</script>
+{% endblock ai %}

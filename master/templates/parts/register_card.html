@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+{% load static %}
+  <style>
+
+.read a {
+    padding: 0.7em 2em;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      max-width: 300px;
+      margin: auto;
+      text-align: center;
+      font-family: arial;
+    }
+
+    .title {
+      color: grey;
+      font-size: 21px;
+    }
+
+    .button {
+      border: none;
+      outline: 0;
+      display: inline-block;
+      padding: 8px;
+      color: white;
+      background-color: #000;
+      text-align: center;
+      cursor: pointer;
+      width: 100%;
+      font-size: 21px;
+    }
+
+    button:hover,
+    a:hover {
+      opacity: 0.7;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: auto auto auto auto;
+      padding: 10px;
+    }
+
+    a:link {
+      text-decoration: none;
+    }
+
+    a {
+      color: white;
+    }
+  </style>
+
+
+  
+
+
+    {% if request.user.is_authenticated %}
+    <div class="grid-item">
+      <div class="card">
+        {% if request.user.doctor %}
+        <img src="{{ request.user.doctor.profile_pic.url }}" alt="Doctor Profile Picture" style="width:100%">
+        {% elif request.user.patient %}
+        <img src="{{ request.user.patient.profile_pic.url }}" alt="Patient Profile Picture" style="width:100%">
+        {% elif request.user.nurse %}
+        <img src="{{ request.user.nurse.profile_pic.url }}" alt="Nurse Profile Picture" style="width:100%">
+        {% else %}
+        <img src="{% static "images/admin.png" %}" alt="John" style="width:100%">
+        {% endif %}
+        <p class="title">لوحة التحكم</p>
+        <p><a class="button" href="{% url "after_login" %}" role="button">الدخول</a></p>
+      </div>
+    </div>
+
+    {% else %}
+    <div class="grid-container">
+
+    <div class="grid-item">
+      <div class="card">
+        <img src="{% static "images/admin.png" %}" alt="John" style="width:100%">
+        <p class="title">مسؤول</p>
+        <p><a class="button" href="{% url "login" hospital_user='ADMIN'%}" role="button">الدخول</a></p>
+      </div>
+    </div>
+
+    <div class="grid-item">
+      <div class="card">
+        <img src="{% static "images/doctor.png" %}" alt="John" style="width:100%">
+        <p class="title">طبيب</p>
+        <p><a class="button" href="{% url "login" hospital_user='DOCTOR'%}" role="button">الدخول</a></p>
+      </div>
+    </div>
+
+    <div class="grid-item">
+      <div class="card">
+        <img src="{% static "images/nurse.jpg" %}" alt="John" style="width:100%">
+        <p class="title">تمريض</p>
+        <p><a class="button" href="{% url "login" hospital_user='NURSE'%}" role="button">الدخول</a></p>
+      </div>
+    </div>
+
+    <div class="grid-item">
+      <div class="card">
+        <img src="{% static "images/patient.jpg" %}" alt="John" style="width:100%">
+        <p class="title">مريض</p>
+        <p><a class="button" href="{% url "login" hospital_user='PATIENT'%}" role="button">الدخول</a></p>
+      </div>
+    </div>
+    {% endif %}
+
+  </div>

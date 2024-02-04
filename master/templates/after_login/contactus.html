@@ -1,0 +1,34 @@
+{% extends "after_login/dashboard_base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block "title" %}
+<title>Healthcare . Contact Us </title>
+{% endblock "title" %}
+
+
+
+{% block 'content' %}
+
+<div class="container-fluid text-center py-5">
+    <div class="container px-4 py-5" id="hanging-icons">
+        <div class="row g-4">
+            <div class="col d-flex align-items-start">
+                <div>
+                    <h2 class="mb-3 border-bottom" style="color: black"> تعليقك يهمنا </h2>
+                </div>
+            </div>
+        </div>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                    {{form|crispy}}
+            </div>
+            <button id="sendEmail" class="btn btn-lg btn-danger" type="submit">Send</button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock 'content' %}

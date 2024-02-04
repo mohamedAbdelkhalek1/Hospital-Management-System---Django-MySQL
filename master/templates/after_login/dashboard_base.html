@@ -1,0 +1,180 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mohammed Abd Elkhalek">
+    {% block "title" %}
+    <title>Dashboard base </title>
+    {% endblock "title" %}
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom Style CSS -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/discharge.css' %}" rel="stylesheet">
+
+    <!-- JQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    {% if messages %}
+    {% for message in messages %}
+    <div {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %}> 
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    {% block 'header' %}
+    <header class="p-3 bg-dark text-white w-100 nav-masthead">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="{% url 'home' %}"
+                    class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <img class="bi me-2" width="40" height="40" src="{% static 'images/house.png' %}"
+                        aria-label="Bootstrap">
+                </a>
+                
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li>
+                        <a href="{% url "home" %}" class="nav-link px-2"> الصفحة الرئيسية</a>  
+                    </li>
+                    <li>
+                        <a href="{% url "contactus" %}" class="nav-link px-2"> تواصل معنا </a>
+                    </li>
+                    
+                </ul>
+                {% if request.user.is_authenticated %}
+                <div class="text-end">
+                    <a type="button" href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+    {% endblock 'header' %}
+
+    
+<main>
+    <div class="row">
+        <div class="col-lg-2 col-md-3">
+            
+            {% block 'nav' %}
+
+            {% if request.user.role == 'ADMIN' %}
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav flex-column">
+                        <li class="nav-item">
+                            <a href="{% url "admin_dashboard" %}" class="nav-link active">لوحة التحكم</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "admin_profile" %}">إدارة الحساب</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "admin_manager" data='DOCTOR' %}">إدارة الأطباء</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "admin_manager" data='PATIENT' %}">إدارة المرضى</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "admin_manager" data='NURSE' %}">إدارة الممرضات</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "admin_manager" data='MEDICINE' %}">إدارة الأدوية</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "admin_manager" data='DEPARTMENT' %}">إدارة الأقسام</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "admin_manager" data='APPOINTMENT' %}">المواعيد </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "admin_add_user" hospital_user='ADMIN' %}">إضافة مسؤول جديد</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            {% else %}
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav flex-column">
+                        <li class="nav-item">
+                        {% if request.user.doctor %}
+                        <a href="{% url "doctor_dashboard" %}" class="nav-link active">لوحة التحكم</a>  
+                        {% elif request.user.patient %}
+                        <a href="{% url "patient_dashboard" %}" class="nav-link active">لوحة التحكم</a>  
+                        {% elif request.user.nurse %}
+                        <a href="{% url "nurse_dashboard" %}" class="nav-link active">لوحة التحكم</a>                            
+                        {% endif %}
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "user_profile" %}">إدارة الحساب</a>
+                        </li>
+                        <li class="nav-item">
+                            {% if request.user.doctor %}
+                            <a class="nav-link" href="{% url 'doctor_appointment' %}">المواعيد </a>  
+                            {% elif request.user.patient %}
+                            <a class="nav-link" href="{% url 'patient_appointment' %}">المواعيد </a>  
+                            {% elif request.user.nurse %}
+                            <a class="nav-link" href="{% url 'nurse_appointment' %}">المواعيد </a>  
+                            {% endif %}
+                            
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            {% endif %}
+            {% endblock 'nav' %}
+            
+        </div>
+        <div class="col-lg-10 col-md-9">
+            <div class="container py-5">
+                
+                    {% block 'content' %}
+            
+                  {% endblock 'content' %}
+            
+            </div>
+        </div>
+    </div>
+
+    {% block 'section' %}
+
+{% endblock 'section' %}
+
+</main>
+
+
+</body>
+
+{% block 'footer' %}
+<footer class="footer text-muted bg-dark py-5">
+    <div class="container">
+        <p class="float-end mb-1">Powered by <a href="https://www.linkedin.com/in/mohammed-abd-elkhalek/">Mohammed</a></p>
+        </p>
+        <p class="mb-1">Healthcare - أفضل مكان لرعاية صحية آمنة</p>
+        <p class="mb-0">© Copyright {% now 'Y' %} <a href="{% url "home" %}">Healthcare</a></p>
+    </div>
+</footer>
+{% endblock %}
+
+</html>

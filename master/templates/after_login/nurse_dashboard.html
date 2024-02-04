@@ -1,0 +1,152 @@
+{% extends "after_login/dashboard_base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+
+{% block "title" %}
+<title>Nurse</title>
+{% endblock "title" %}
+
+
+                
+                    {% block 'content' %}
+                <div class="py-5 bg-light">
+                    <div class="container">
+                        <div class="row">
+                        <div class="col-md-4">
+                          <div class="card market-update-block">
+                            <div class="card-body">
+                              <h3>{{appointment_count}}</h3>
+                              <h4> عدد المواعيد اليوم</h4>
+                            </div>
+                            <div class="card-footer">
+                              <i class="fa fa-calendar"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card market-update-block">
+                              <div class="card-body">
+                                <h3>{{doctor_count}}</h3>
+                                <h4> طاقم الأطباء في القسم</h4>
+                              </div>
+                              <div class="card-footer">
+                                <i class="fa fa-user-o"></i>
+                              </div>
+                            </div>
+                          </div>
+
+                        <div class="col-md-4">
+                          <div class="card market-update-block">
+                            <div class="card-body">
+                              <h3>{{nurse_count}}</h3>
+                              <h4> طاقم التمريض في القسم</h4>
+                            </div>
+                            <div class="card-footer">
+                              <i class="fa fa-user-md"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-4">
+                          <div class="card market-update-block">
+                            <div class="card-body">
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <h4> رئيس القسم </h4>
+                                  {% if  department.head_of_department%}
+                                  <a href="{% url "send_mail" id=department.head_of_department.user.id%}" class="btn btn-success btn-sm">إرسال ايميل</a>
+                                </div>
+                                <div class="col-md-6">
+                                  <img src="{{ department.head_of_department.profile_pic.url }}" alt="صورة رئيس القسم" width="100" height="100">
+                                </div>
+                                {% endif %}
+                              </div>
+                            </div>
+                            <div class="card-footer">
+                              <i class="fa fa-user-md"></i>
+                            </div>
+                          </div>
+                        </div>
+                        
+
+                        <div class="col-md-4">
+                          <div class="card market-update-block">
+                            <div class="card-body">
+                                  <h4> قسم {{department.name}} </h4>
+                                  <p> {{ request.user.nurse.shift_time }}</p>
+                            </div>
+                            <div class="card-footer">
+                              <i class="fa fa-user-md"></i>
+                            </div>
+                          </div>
+                        </div>
+
+
+                      </div>
+                    </div>
+                  </div>
+            
+            
+                  {% endblock 'content' %}
+
+    {% block 'section' %}
+    <section class="py-5 container">
+    <div class="row py-lg-5">
+    
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <div class="panel panel-primary col-md-5" style="margin-left:2%;">
+                <div class="panel-heading" style="text-align:center;">
+                  <h6 class="panel-title">طاقم التمريض الحالي</h6>
+                </div>
+                <table class="table table-hover table-striped" id="dev-table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th>الإسم</th>
+                      <th> التواصل</th>          
+                    </tr>
+                  </thead>
+                  {% for n in nurses %}
+                  <tr>
+                    <td> {{n.get_name}}</td>
+                    <td><a href="{% url "send_mail" id=n.user.id%}" class="btn btn-success btn-sm">إرسال ايميل</a></td>
+                  </tr>
+                  {% endfor %}
+                </table>
+              </div>
+        </div>
+     
+
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <div class="panel panel-primary col-md-5" style="margin-left:2%;">
+              <div class="panel-heading" style="text-align:center;">
+                <h6 class="panel-title">طاقم أطباء القسم</h6>
+              </div>
+              <table class="table table-hover table-striped" id="dev-table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>الإسم</th>
+                    <th> التواصل</th>          
+                  </tr>
+                </thead>
+                {% for d in doctors %}
+                <tr>
+                  <td> {{d.get_name}}</td>
+                  <td><a href="{% url "send_mail" id=d.user.id%}" class="btn btn-success btn-sm">إرسال ايميل</a></td>
+                </tr>
+                {% endfor %}
+              </table>
+            </div>
+      </div>
+
+        
+
+        
+    </div>
+</section>
+{% endblock 'section' %}
+
+
+

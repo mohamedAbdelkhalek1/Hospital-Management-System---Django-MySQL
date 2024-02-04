@@ -1,0 +1,48 @@
+{% load crispy_forms_tags %}
+
+<section class="py-5 container">
+    <div class="row py-lg-5">
+        <div class="col-lg-12">
+            <h1 class="mb-4"> {{data_name}} Management</h1>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <form class="form-inline mb-3" method='get'>
+                        {{data_table.form|crispy}}
+                        <button type="submit" class="btn btn-primary">بحث</button>
+                    </form>
+                </div>
+                <div class="col-md-6 text-right">
+                    <a href="{% url "admin_add_user" hospital_user='PATIENT' %}" class="btn btn-success">إضافة مريض جديد</a>
+                </div>
+            </div>
+            <div class="table-responsive mt-4">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>الاسم</th>
+                            <th>الدكتور المعالج</th>
+                            <th>العمليات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for patient in data_table.qs %}
+                        <tr>
+                            <td> {{patient.get_name}}</td>
+                            <td> {{patient.assigned_doctor}}</td>
+                            <td>
+                                <a href="{% url "admin_delete_user" id=patient.user.id%}" class="btn btn-danger btn-sm">حذف</a>
+                            </td>
+                            {% if patient.user.is_active == False %}
+                            <td>
+                                <a href="{% url "admin_confirm_user" id=patient.user.id%}" class="btn btn-success btn-sm">تأكيد الحساب</a>
+                            </td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

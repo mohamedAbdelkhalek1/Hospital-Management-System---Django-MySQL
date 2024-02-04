@@ -1,0 +1,44 @@
+{% load crispy_forms_tags %}
+
+<section class="py-5 container">
+    <div class="row py-lg-5">
+        <div class="col-lg-12">
+            <h1 class="mb-4"> {{data_name}} Management</h1>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <form class="form-inline mb-3" method='get'>
+                        {{data_table.form|crispy}}
+                        <button type="submit" class="btn btn-primary">بحث</button>
+                    </form>
+                </div>
+                <div class="col-md-6 text-right">
+                    <a href="{% url "admin_add_department" %}" class="btn btn-success">إضافة قسم جديد</a>
+                </div>
+            </div>
+            <div class="table-responsive mt-4">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>القسم</th>
+                            <th>رئيس القسم </th>
+                            <th>العمليات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for department in data_table.qs %}
+                        <tr>
+                            <td> {{department.name}}</td>
+                            <td> {{department.head_of_department}}</td>
+                            <td>
+                                <a href="{% url "admin_delete_department" id=department.id%}" class="btn btn-danger btn-sm">حذف</a>
+                                <a href="{% url "admin_update_department" id=department.id%}" class="btn btn-success btn-sm">تعديل</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

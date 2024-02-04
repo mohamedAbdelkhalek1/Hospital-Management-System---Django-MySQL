@@ -1,0 +1,217 @@
+
+{% load static %}
+ 
+    <!-- //font-awesome icons -->
+    <style>
+html, body{
+    font-size: 100%;
+	background:#ffffff;
+	margin: 0;
+	font-family: 'Lato', sans-serif;
+}
+p,ul li,ol li{
+	margin:0;
+	font-size:1em;
+	letter-spacing: 1px;
+	color:#555;
+	font-family: 'Lato', sans-serif;
+}
+h1,h2,h3,h4,h5,h6{
+font-family: 'Raleway', sans-serif;
+
+	margin:0;
+}
+ul,label{
+	margin:0;
+	padding:0;
+}
+/*--//slider --*/
+#about {
+   padding:5em 0
+}
+h3.w3_heade_tittle_agile,h2.w3_heade_tittle_agile  {
+    text-align: center;
+    font-weight: 700;
+    color: #111;
+    font-size: 3em;
+	    letter-spacing: 1px;
+
+}
+h3.w3_heade_tittle_agile.two {
+	  color: #fff;
+}
+p.sub_t_agileits {
+    font-size: 1em;
+    margin: 0;
+    color: #de0f17;
+    margin-bottom: 3em;
+    font-weight: 400;
+    letter-spacing: 10px;
+    text-align: center;
+}
+.service-w3l {
+    padding: 5em 0;
+    background: #003666;
+}
+.service-w3l h3.text-center {
+	font-size:40px;
+	font-weight:bold;
+	color:#fff;
+	padding-bottom:50px;
+	position:relative;
+}
+.service-w3l h4.text-center {
+    font-size: 25px;
+    font-weight: 700;
+    color: #fff;
+    padding: 20px 0;
+    letter-spacing: 1px;
+}
+.ch-grid {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: block;
+	text-align: center;
+	width: 100%;
+}
+.ch-grid li {
+	width: 220px;
+	height: 220px;
+	display: inline-block;
+	margin:0px;
+}
+.col-lg-4.col-md-4.col-sm-6.serv-agileinfo2 {
+    padding-top: 190px;
+}
+
+@media(max-width:991px){
+.serv-agileinfo3 {
+	float: left;
+	width: 100%;
+	}
+.serv-agileinfo2 {
+	padding-top:0;
+	width: 100%;
+	float: left;
+	margin: 0 auto;
+	text-align: center;
+	}
+.serv-wthree4 {
+	width: 50%;
+	margin: 0 auto;
+	float: none;
+	}
+.serv-agileinfo2 {
+	padding-top:10px!important;
+	}
+
+}
+    </style>
+            
+    
+    <!-- services section -->
+    <div class="service-w3l jarallax" id="service">
+        <div class="container">
+        <h3 class="w3_heade_tittle_agile two">ما يجعلنا الأفضل </h3>
+            <p class="sub_t_agileits">دائما التميز في الخدمات</p>
+            <div class="col-lg-4 col-md-4 col-sm-12 serv-agileinfo1">
+                <div class="col-lg-12 col-md-12 col-sm-6 serv-wthree1" data-aos="zoom-in">
+                    <ul class="ch-grid">
+                        <li>
+                            <div class="ch-item">				
+                                <div class="ch-info">
+                                    <div class="ch-info-front ch-img-1"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
+                                    <div class="ch-info-back">
+                                        <h5>احجز موعدك الان </h5>
+                                        <a href="{% url "book_appointment" %}"><p>اضغط للتسجيل</p></a>
+                                        
+                                    </div>	
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <h4 class="text-center">سهولة الحجز</h4>
+                    <!--<p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla volutpat risus eu pretium commodo.</p> -->	
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-6 serv-wthree2" data-aos="zoom-in">
+                    <ul class="ch-grid">
+                        <li>
+                            <div class="ch-item">				
+                                <div class="ch-info">
+                                    <div class="ch-info-front ch-img-2"><i class="fa fa-user-md" aria-hidden="true"></i></div>
+                                    <div class="ch-info-back">
+                                        <h5>التعرف من خلال الصور</h5>
+                                        <a href="{% url "brain_classifier" %}"><p>اضغط  للاختبار</p></a>
+                                    </div>	
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <h4 class="text-center">اختبار الكشف عن مرض خبيث في المخ باستخدام الذكاء الاصطناعي</h4>
+                    <!--<p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla volutpat risus eu pretium commodo.</p> -->
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 serv-agileinfo2">
+                <div class="col-lg-12 col-md-12 col-sm-6 serv-wthree4" data-aos="zoom-in">
+                    <ul class="ch-grid">
+                        <li>
+                            <div class="ch-item">				
+                                <div class="ch-info">
+                                    <div class="ch-info-front ch-img-3"><i class="fa fa-ambulance" aria-hidden="true"></i></div>
+                                    <div class="ch-info-back">
+                                        <h5>توافر أهم الأدوية لجميع الأقسام</h5>
+                                        <a href="{% url "medicine" %}"><p>اضغط و شاهد</p></a>
+                                    </div>	
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <h4 class="text-center">صيدلية داخلية</h4>
+                    <!--<p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla volutpat risus eu pretium commodo.</p> -->
+                </div>
+                <div class="clearfix"></div>
+            </div>	
+            <div class="col-lg-4 col-md-4 col-sm-6 serv-agileinfo3">
+                <div class="col-lg-12 col-md-12 col-sm-6 serv-wthree6" data-aos="zoom-in">
+                    <ul class="ch-grid">
+                        <li>
+                            <div class="ch-item">				
+                                <div class="ch-info">
+                                    <div class="ch-info-front ch-img-4"><i class="fa fa-tint" aria-hidden="true"></i></div>
+                                    <div class="ch-info-back">
+                                        <h5>التعرف من خلال الصور</h5>
+                                        <a href="{% url "skin_detect" %}"><p>اضغط  للاختبار</p></a>
+                                    </div>	
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <h4 class="text-center">اختبار أمراض الجلد الخبيثة باستخدام الذكاء الاصطناعي</h4>
+                    <!--<p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla volutpat risus eu pretium commodo.</p> -->
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-6 serv-wthree5" data-aos="zoom-in">
+                    <ul class="ch-grid">
+                        <li>
+                            <div class="ch-item">				
+                                <div class="ch-info">
+                                    <div class="ch-info-front ch-img-5"><i class="fa fa-wheelchair" aria-hidden="true"></i></div>
+                                    <div class="ch-info-back">
+                                        <h5>التعرف من خلال الصور</h5>
+                                        <a href="{% url "bones_classifier" %}"><p>اضغط  للاختبار</p></a>
+                                    </div>	
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <h4 class="text-center"> اختبار كسور العظام باستخدام الذكاء الاصطناعي</h4>
+                    <!--<p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla volutpat risus eu pretium commodo.</p> -->
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    
+    <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>

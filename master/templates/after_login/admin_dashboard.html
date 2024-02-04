@@ -1,0 +1,233 @@
+{% extends "after_login/dashboard_base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+
+{% block "title" %}
+<title>admin</title>
+{% endblock "title" %}
+
+
+        
+                
+                    {% block 'content' %}
+            
+                <div class="py-5 bg-light">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="card market-update-block">
+                            <div class="card-body">
+                              <h3>{{doctorcount}}</h3>
+                              <h4>إجمالى عدد الأطباء</h4>
+                              <p>الموافقة مطلوبة: {{pendingdoctorcount}}</p>
+                            </div>
+                            <div class="card-footer">
+                              <i class="fa fa-user-md"></i>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="card market-update-block">
+                            <div class="card-body">
+                              <h3>{{nursecount}}</h3>
+                              <h4>إجمالى عدد الممرضات</h4>
+                              <p>الموافقة مطلوبة: {{pendingnursecount}}</p>
+                            </div>
+                            <div class="card-footer">
+                              <i class="fa fa-user-md"></i>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="card market-update-block">
+                            <div class="card-body">
+                              <h3>{{patientcount}}</h3>
+                              <h4>إجمالى عدد المرضى</h4>
+                              <p>فى انتظار الموافقة: {{pendingpatientcount}}</p>
+                            </div>
+                            <div class="card-footer">
+                              <i class="fa fa-user-o"></i>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="card market-update-block">
+                            <div class="card-body">
+                              <h3>{{appointmentcount}}</h3>
+                              <h4>إجمالى عدد المواعيد</h4>
+                              <p>الموافقة على المواعيد: {{pendingappointmentcount}}</p>
+                            </div>
+                            <div class="card-footer">
+                              <i class="fa fa-calendar"></i>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="card market-update-block">
+                            <div class="card-body">
+                              <h3>{{departmentcount}}</h3>
+                              <h4>إجمالى عدد الأقسام</h4>
+                            </div>
+                            <div class="card-footer">
+                              <i class="fa fa-user-md"></i>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="card market-update-block">
+                            <div class="card-body">
+                              <h3>{{medicinecount}}</h3>
+                              <h4>إجمالى عدد الأدوية</h4>
+                            </div>
+                            <div class="card-footer">
+                              <i class="fa fa-calendar"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            
+            
+                  {% endblock 'content' %}
+            
+
+
+    {% block 'section' %}
+    <section class="py-5 container">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <div class="panel panel-primary col-md-5" style="margin-left:2%;">
+                <div class="panel-heading" style="text-align:center;">
+                  <h6 class="panel-title">الأطباء الحاليون</h6>
+                </div>
+                <table class="table table-hover table-striped" id="dev-table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th>الإسم</th>
+                      <th>القسم</th>
+                      <th> التواصل</th>
+                      <th>الحالة</th>
+          
+                    </tr>
+                  </thead>
+                  {% for d in doctors %}
+                  <tr>
+                    <td> {{d.get_name}}</td>
+                    <td>{{d.department}}</td>
+                    <td><a href="{% url "send_mail" id=d.user.id%}" class="btn btn-success btn-sm">إرسال ايميل</a></td>
+                    {% if d.user.is_active %}
+                    <td> <span class="label label-primary">دائم</span></td>
+                    {% else %}
+                    <td> <span class="label label-success">في الإنتظار</span></td>
+                    {% endif %}
+          
+                  </tr>
+                  {% endfor %}
+                </table>
+              </div>
+        </div>
+
+        
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <div class="panel panel-primary col-md-5" style="margin-left:2%;">
+                <div class="panel-heading" style="text-align:center;">
+                  <h6 class="panel-title">الممرضات الحاليات</h6>
+                </div>
+                <table class="table table-hover table-striped" id="dev-table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th>الإسم</th>
+                      <th>القسم</th>
+                      <th> التواصل</th>
+                      <th>الحالة</th>
+          
+                    </tr>
+                  </thead>
+                  {% for n in nurses %}
+                  <tr>
+                    <td> {{n.get_name}}</td>
+                    <td>{{n.department}}</td>
+                    <td><a href="{% url "send_mail" id=n.user.id%}" class="btn btn-success btn-sm">إرسال ايميل</a></td>
+                    {% if n.user.is_active %}
+                    <td> <span class="label label-primary">دائم</span></td>
+                    {% else %}
+                    <td> <span class="label label-success">في الإنتظار</span></td>
+                    {% endif %}
+          
+                  </tr>
+                  {% endfor %}
+                </table>
+              </div>
+        </div>
+     
+
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <div class="panel panel-primary col-md-5" style="margin-left:5%;">
+                <div class="panel-heading" style="text-align:center;">
+                  <h6 class="panel-title">المرضى الحاليون </h6>
+                </div>
+                <table class="table table-hover table-striped" id="dev-table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th>الإسم</th>
+                      <th>الأعراض</th>
+                      <th>جهة التواصل</th>
+                      <th>العنوان</th>
+                      <th>الحالة</th>
+          
+                    </tr>
+                  </thead>
+                  {% for p in patients %}
+                  <tr>
+                    <td> {{p.get_name}}</td>
+                    <td>{{p.symptoms}}</td>
+                    <td><a href="{% url "send_mail" id=p.user.id%}" class="btn btn-success btn-sm">إرسال ايميل</a></td>
+                    <td>{{p.address}}</td>
+                    {% if p.user.is_active %}
+                    <td> <span class="label label-primary">تم الموافقة </span></td>
+                    {% else %}
+                    <td> <span class="label label-success">فى الإنتظار </span></td>
+                    {% endif %}
+          
+                  </tr>
+                  {% endfor %}
+                </table>
+              </div>
+        </div>
+
+
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <div class="panel panel-primary col-md-5" style="margin-left:2%;">
+                <div class="panel-heading" style="text-align:center;">
+                  <h6 class="panel-title"> الأقسام</h6>
+                </div>
+                <table class="table table-hover table-striped" id="dev-table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th>اسم القسم</th>
+                      <th>رئيس القسم</th>
+          
+                    </tr>
+                  </thead>
+                  {% for dept in departments %}
+                  <tr>
+                    <td> {{dept.name}}</td>
+                    <td>{{dept.head_of_department}}</td>
+                    
+                  </tr>
+                  {% endfor %}
+                </table>
+              </div>
+        </div>
+
+        
+    </div>
+</section>
+{% endblock 'section' %}
+
+
+
+

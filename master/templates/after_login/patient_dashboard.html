@@ -1,0 +1,92 @@
+{% extends "after_login/dashboard_base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+
+{% block "title" %}
+<title>PATIENT</title>
+{% endblock "title" %}
+
+
+                
+                    {% block 'content' %}
+
+                <div class="py-5 bg-light">
+                    <div class="container">
+                        <div class="row">
+                        <div class="col-md-4">
+                          <div class="card market-update-block">
+                            <div class="card-body">
+                              <h3>{{appointment_count}}</h3>
+                              <h4> عدد المواعيد اليوم</h4>
+                            </div>
+                            <div class="card-footer">
+                              <i class="fa fa-calendar"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                      
+
+
+                        <div class="col-md-4">
+                            <div class="card market-update-block">
+                              <div class="card-body">
+                                <h3>{{past_appointment_count}}</h3>
+                                <h4> عدد المواعيد من فبل</h4>
+                              </div>
+                              <div class="card-footer">
+                                <i class="fa fa-user-o"></i>
+                              </div>
+                            </div>
+                          </div>
+
+                        <div class="col-md-4">
+                          <div class="card market-update-block">
+                            <div class="card-body">
+                              <h3>{{future_appointment_count}}</h3>
+                              <h4> عدد المواعيد من القادمة</h4>
+                            </div>
+                            <div class="card-footer">
+                              <i class="fa fa-user-md"></i>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                          <div class="card market-update-block">
+                            <div class="card-body">
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <h4> الطبيب المسؤول</h4>
+                                  {% if doctor %}
+                                  <p>د : {{ doctor }}</p>
+                                  <p> قسم : {{ doctor.department }}</p>
+                                  <a href="{% url "send_mail" id=doctor.user.id%}" class="btn btn-success btn-sm">إرسال ايميل</a>                                  
+                                </div>
+                                <div class="col-md-6">
+                                  <img src="{{ doctor.profile_pic.url }}" alt="صورة الطبيب المسؤول " width="100" height="100">
+                                </div>
+                              </div>
+                              {% endif %}
+                            </div>
+                            <div class="card-footer">
+                              <i class="fa fa-user-md"></i>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        
+                      </div>
+                    </div>
+                  </div>
+            
+            
+                  {% endblock 'content' %}
+
+    
+
+

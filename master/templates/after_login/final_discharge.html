@@ -1,0 +1,141 @@
+{% extends "after_login/dashboard_base.html" %}
+{% load static %}
+
+
+{% block "title" %}
+<title>admin-discharge-patient-final</title>
+{% endblock "title" %}
+
+{% block 'content' %}
+<br><br><br>
+<div class="invoice-box">
+  <table cellpadding="0" cellspacing="0">
+    <tr class="top">
+      <td colspan="2">
+        <table>
+          <tr>
+            <td class="title">
+              <h1>إدارة المستشفى</h1>
+            </td>
+
+            <td>
+
+              تاريخ الموافقة: {{discharge_form.admit_date}}<br>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr class="information">
+      <td colspan="2">
+        <table>
+          <tr>
+            <td>
+              اسم المريض : {{discharge_form.appointment.patient}}<br>
+              جهة تواصل المريض : {{discharge_form.appointment.patient.mobile}}<br>
+              عنوان المريض : {{discharge_form.appointment.patient.location}}<br>
+            </td>
+
+            <td>
+              اسم الطبيب : {{discharge_form.appointment.doctor}}<br>
+              تخصص : {{discharge_form.appointment.doctor.department}}<br>
+              {{discharge_form.appointment.doctor.specialization}}<br>
+
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr class="heading">
+      <td>
+        التقرير الطبي
+      </td>
+      <td>
+
+      </td>
+
+    </tr>
+
+    <tr class="details">
+      <td>
+        {{discharge_form.doctor_report}}
+      </td>
+    </tr>
+    <tr class="heading">
+      <td>
+        الاغراض
+      </td>
+
+      <td>
+        الاسعار
+      </td>
+    </tr>
+
+    <tr class="item">
+      <td>
+        حساب الغرفة
+      </td>
+
+      <td>
+        {{discharge_form.room_charge}}
+      </td>
+    </tr>
+
+    <tr class="item">
+      <td>
+        أتعاب الطبيب
+      </td>
+
+      <td>
+        {{discharge_form.doctor_fee}}
+      </td>
+    </tr>
+
+    <tr class="item">
+      <td>
+        تكلفة الدواء
+      </td>
+
+      <td>
+        {{discharge_form.medicine_cost}}
+      </td>
+    </tr>
+
+    <tr class="item last">
+      <td>
+        رسوم أخرى
+      </td>
+
+      <td>
+        {{discharge_form.other_charge}}
+      </td>
+    </tr>
+    
+    <tr class="total">
+      {% if discharge_form.is_paid %}
+      <td>تم الدفع بنجاح</td>
+      {% else %}
+    <td>
+    <a href="{% url "pay_discharge" id=discharge_form.id %}" class="btn btn-success btn-sm"> دفع تكاليف الخروج</a>
+    </td>
+    {% endif %}
+      <td>
+        الاجمالى : {{discharge_form.total}}
+      </td>
+    </tr>
+
+
+  </table>
+</div>
+<br><br>
+<div class="download">
+  <a style="background:red; width:500px;" href="{% url "download_permit_pdf" id=discharge_form.id %}">تحميل</a>
+</div>
+
+
+{% endblock 'content' %}
+
+{% block 'section' %}
+{% endblock 'section' %}

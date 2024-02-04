@@ -1,0 +1,54 @@
+{% extends "services/service_base.html" %}
+{% load static %}
+
+
+
+{% block 'body' %}
+
+<div class="hero">
+	<div class="container">
+		<h1 class="text-white ">قسم {{department.name}} </h1>
+	</div>
+</div>	
+	<main>
+		<section class="department-info">
+			<div class="container">
+				<div class="department-details">
+					<img src="{{ department.department_pic.url }}" alt="Department" class="department-image">
+					<p>{{department.description}}</p>
+				</div>
+				<div class="department-head">
+					<h2>رئيس القسم</h2>
+					<div class="doctor-details">
+						<img src="{{department.head_of_department.profile_pic.url}}" alt="Doctor" class="doctor-image">
+						<h3>{{department.head_of_department.get_name}}</h3>
+					</div>
+				</div>
+				<div class="department-staff">
+					<h2>طاقم القسم</h2>
+					<div class="doctors">
+						<h3>طاقم الأطباء</h3>
+					{% for doctor in department.doctors %}
+						<div class="doctor-details">
+							<img src="{{doctor.profile_pic.url}}" alt="Doctor" class="doctor-image">
+							<h4>{{doctor.get_name}}</h4>
+						</div>
+					{% endfor %}
+					</div>
+					<br><br><br>
+					<div class="nurses">
+						<h3>طاقم التمريض</h3>
+						{% for nurse in department.nurses %}
+						<div class="nurse-details">
+							<img src="{{nurse.profile_pic.url}}" alt="Nurse" class="nurse-image">
+							<h4>{{nurse.get_name}}</h4>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	
+
+{% endblock 'body' %}
