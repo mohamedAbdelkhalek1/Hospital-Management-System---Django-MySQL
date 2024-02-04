@@ -28,7 +28,7 @@ def classifier(path,model,shape)-> int:
     return idx,pred
 
 
-model,input_layer=load_trained_model("E:/bulding/Django_projects/Hospital/master/ai/model.h5")  
+model,input_layer=load_trained_model("E:/bulding/Django_projects/Hospital/master/ai/skin.h5")  
 
 idx,pred=classifier("E:/bulding/Django_projects/Hospital/master/ai/OIP 2.jpg",model,input_layer) 
 classes=['actinic keratosis', 'basal cell carcinoma', 'dermatofibroma', 'melanoma', 'nevus', 'pigmented benign keratosis \n ', 'seborrheic keratosis', 'squamous cell carcinoma', 'vascular lesion']
