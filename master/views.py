@@ -830,7 +830,7 @@ def send_mail_view(request, id):
 def skin_detect_view(request):
     if request.method == 'POST' and request.FILES['image']:
         image = request.FILES['image']
-        image_path = 'E:/bulding/Django_projects/Hospital/master/static/images' # اسم الملف الذي سيتم حفظه
+        image_path = '/../../images' # اسم الملف الذي سيتم حفظه
         img = Image.open(io.BytesIO(image.read()))
 
         # تحويل الصورة إلى PNG
@@ -838,7 +838,7 @@ def skin_detect_view(request):
         img.save(image_path, format='PNG')
         
         # تحميل النموذج والتصنيف
-        model_path = 'E:/bulding/Django_projects/Hospital/master/ai/skin.h5'
+        model_path = '/../../skin.h5'
         model, input_layer = skin_classifier.load_trained_model(model_path)
         idx, pred = skin_classifier.classifier(image_path, model, input_layer)
         
@@ -861,7 +861,7 @@ def skin_detect_view(request):
 def bones_detect_view(request):
     if request.method == 'POST' and request.FILES['image']:
         image = request.FILES['image']
-        image_path = 'E:/bulding/Django_projects/Hospital/master/static/images' # اسم الملف الذي سيتم حفظه
+        image_path = '/../../images' # اسم الملف الذي سيتم حفظه
         img = Image.open(io.BytesIO(image.read()))
 
         # تحويل الصورة إلى PNG
@@ -869,7 +869,7 @@ def bones_detect_view(request):
         img.save(image_path, format='PNG')
         
         # تحميل النموذج والتصنيف
-        model_path = 'E:/bulding/Django_projects/Hospital/master/ai/xray.h5'
+        model_path = '/../../xray.h5'
         model, input_layer = bones_classifier.load_trained_model(model_path)
         idx, pred = bones_classifier.classifier(image_path, model, input_layer)
         
@@ -893,7 +893,7 @@ def bones_detect_view(request):
 def brain_detect_view(request):
     if request.method == 'POST' and request.FILES['image']:
         image = request.FILES['image']
-        image_path = 'E:/bulding/Django_projects/Hospital/master/static/images' # اسم الملف الذي سيتم حفظه
+        image_path = '/../../images' # اسم الملف الذي سيتم حفظه
         img = Image.open(io.BytesIO(image.read()))
 
         # تحويل الصورة إلى PNG
@@ -901,7 +901,7 @@ def brain_detect_view(request):
         img.save(image_path, format='PNG')
         
         # تحميل النموذج والتصنيف
-        model_path = 'E:/bulding/Django_projects/Hospital/master/ai/brain.h5'
+        model_path = '/../../brain.h5'
         model, input_layer = brain_classifier.load_trained_model(model_path)
         idx, pred = brain_classifier.classifier(image_path, model, input_layer)
         
