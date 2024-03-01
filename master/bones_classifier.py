@@ -24,9 +24,9 @@ def classifier(path,model,shape)-> int:
     
     return idx,pred
 
-model,input_layer=load_trained_model('E:/bulding/Django_projects/Hospital/master/ai/xray.h5')
+model,input_layer=load_trained_model('/../../xray.h5')
 
-idx,pred=classifier('E:/bulding/Django_projects/Hospital/master/ai/bon3.jpg',model,input_layer) 
+idx,pred=classifier('/../../bon3.jpg',model,input_layer) 
 classes=['No fracture','fractured']
 
 print('\n\n')
