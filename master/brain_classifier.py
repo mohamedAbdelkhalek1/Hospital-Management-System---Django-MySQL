@@ -24,10 +24,10 @@ def classifier(path,model,shape)-> int:
     
     return idx,pred
 
-model,input_layer=load_trained_model('E:/bulding/Django_projects/Hospital/master/ai/brain.h5')
+model,input_layer=load_trained_model('/../../brain.h5')
 
-classifier('E:/bulding/Django_projects/Hospital/master/ai/brain1.jpeg',model,input_layer)
-idx,pred=classifier("E:/bulding/Django_projects/Hospital/master/ai/bon1.jpg",model,input_layer) 
+classifier('/../../brain1.jpeg',model,input_layer)
+idx,pred=classifier("/../../bon1.jpg",model,input_layer) 
 classes=['No tumor', 'Stable tumor', 'Unstable tumor']
 
 print('\n\n')
